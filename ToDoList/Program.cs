@@ -1,8 +1,9 @@
 ﻿Console.WriteLine("Hello");
 
 List <string> toDoList = new();
-ShowMenu(); 
-void ShowMenu()
+bool exit = false;
+
+while(!exit)
 {
 
     Console.WriteLine("\nWhat do you want to do?");
@@ -29,11 +30,11 @@ void ShowMenu()
             break;
 
         case "e":
+            exit = true;
             Environment.Exit(0);
             break;
         default:
             Console.WriteLine("Incorrect input");
-            ShowMenu();
             break;
     }
 }
@@ -43,8 +44,7 @@ void ShowList()
 {
     if (toDoList.Count <= 0)
     {
-        Console.WriteLine("No TODOs have been added yet.");
-        ShowMenu();
+        NoToDoMessage();
     }
     else
     {
@@ -52,7 +52,6 @@ void ShowList()
         {
             Console.WriteLine((i + 1) + ". " + toDoList[i]);
         }
-        ShowMenu();
     }
 }
 
@@ -79,24 +78,34 @@ void AddToDO()
         Console.WriteLine("The description cannot be empty.\nNo TODO is added");
         AddToDO();
     }
-    ShowMenu();
 }
 
 void RemoveTodo()
-{
+{    
+    if (toDoList.Count == 0) 
+    { 
+        NoToDoMessage();
+        return;
+    }
+
     Console.WriteLine("\nSelect the number of the TODO you want to remmove");
     ShowList();
+
     try
     {
         int index = Convert.ToInt16(Console.ReadLine()) - 1;
         Console.WriteLine("Todo removed: " + toDoList[index].ToString());
         toDoList.RemoveAt(index);
-        ShowMenu();    
 
     }
     catch
     {
         Console.WriteLine("You must enter a number");
-        RemoveTodo();
+        
     }
+}
+
+void NoToDoMessage()
+{
+    Console.WriteLine("No TODOs have been added yet.");
 }
