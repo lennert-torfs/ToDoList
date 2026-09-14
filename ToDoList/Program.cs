@@ -78,6 +78,9 @@ void AddToDO()
         }
 
     } while (!isValid);
+
+    toDoList.Add(userInput);
+    Console.WriteLine("TODO succesfully added: " + userInput);
 }
 
 void RemoveTodo()
@@ -93,7 +96,7 @@ void RemoveTodo()
     bool isNumber = int.TryParse(Console.ReadLine(), out int index);
     index--;
 
-    if (isNumber && index < toDoList.Count())
+    if (isNumber && index < toDoList.Count() && index >= 1)
     {
         Console.WriteLine("Todo removed: " + toDoList[index].ToString());
         toDoList.RemoveAt(index);
