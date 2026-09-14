@@ -96,7 +96,7 @@ void RemoveTodo()
     bool isNumber = int.TryParse(Console.ReadLine(), out int index);
     index--;
 
-    if (isNumber && index < toDoList.Count() && index >= 1)
+    if (isNumber && index < toDoList.Count && index >= 0)
     {
         Console.WriteLine("Todo removed: " + toDoList[index].ToString());
         toDoList.RemoveAt(index);
@@ -104,7 +104,6 @@ void RemoveTodo()
     else
     {
         Console.WriteLine("You must enter a number from the list");
-
     }
 }
 
