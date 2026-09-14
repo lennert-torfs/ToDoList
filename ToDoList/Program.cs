@@ -1,11 +1,10 @@
-﻿Console.WriteLine("Hello");
-
-List <string> toDoList = new();
+﻿List <string> toDoList = new();
 bool exit = false;
+
+Console.WriteLine("Hello");
 
 while(!exit)
 {
-
     Console.WriteLine("\nWhat do you want to do?");
     Console.WriteLine("[S]ee all TODOs");
     Console.WriteLine("[A]dd a TODO");
@@ -30,7 +29,6 @@ while(!exit)
             break;
 
         case "e":
-            exit = true;
             Environment.Exit(0);
             break;
         default:
@@ -45,39 +43,41 @@ void ShowList()
     if (toDoList.Count <= 0)
     {
         NoToDoMessage();
+        return;
     }
-    else
+
+    for (int i = 0; i < toDoList.Count; i++)
     {
-        for (int i = 0; i < toDoList.Count; i++)
-        {
-            Console.WriteLine((i + 1) + ". " + toDoList[i]);
-        }
+      Console.WriteLine((i + 1) + ". " + toDoList[i]);
     }
 }
 
 void AddToDO()
 {
-    Console.WriteLine("\nEnter the TODO description:");
-    string userInput = Console.ReadLine();
-    if (userInput.Length > 0)
+    string userInput;
+    bool isValid;
+
+    do
     {
-        if (!toDoList.Contains(userInput))
+        Console.WriteLine("\nEnter the TODO description:");
+        userInput = Console.ReadLine();
+
+        if (userInput.Length == 0)
         {
-            toDoList.Add(userInput);
-            Console.WriteLine("TODO succesfully added: " + userInput);
+            Console.WriteLine("The description cannot be empty.\nNo TODO is added");
+            isValid = false;
+        }
+        else if (toDoList.Contains(userInput))
+        {
+            Console.WriteLine("The description must be unique.\nNo TODO is added.");
+            isValid = false;
         }
         else
         {
-            Console.WriteLine("The description must be unique.\nNo TODO is added.");
-            AddToDO();
+            isValid = true;
         }
 
-    }
-    else
-    {
-        Console.WriteLine("The description cannot be empty.\nNo TODO is added");
-        AddToDO();
-    }
+    } while (!isValid);
 }
 
 void RemoveTodo()
@@ -90,18 +90,18 @@ void RemoveTodo()
 
     Console.WriteLine("\nSelect the number of the TODO you want to remmove");
     ShowList();
+    bool isNumber = int.TryParse(Console.ReadLine(), out int index);
+    index--;
 
-    try
+    if (isNumber && index < toDoList.Count())
     {
-        int index = Convert.ToInt16(Console.ReadLine()) - 1;
         Console.WriteLine("Todo removed: " + toDoList[index].ToString());
         toDoList.RemoveAt(index);
-
     }
-    catch
+    else
     {
-        Console.WriteLine("You must enter a number");
-        
+        Console.WriteLine("You must enter a number from the list");
+
     }
 }
 
