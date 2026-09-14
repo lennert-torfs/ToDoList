@@ -4,7 +4,8 @@ List <string> toDoList = new();
 ShowMenu(); 
 void ShowMenu()
 {
-    Console.WriteLine("What do you want to do?");
+
+    Console.WriteLine("\nWhat do you want to do?");
     Console.WriteLine("[S]ee all TODOs");
     Console.WriteLine("[A]dd a TODO");
     Console.WriteLine("[R]emove a TODO");
@@ -27,7 +28,7 @@ void ShowMenu()
             RemoveTodo();
             break;
 
-        case "E":
+        case "e":
             Environment.Exit(0);
             break;
         default:
@@ -36,7 +37,6 @@ void ShowMenu()
             break;
     }
 }
-
 
 
 void ShowList()
@@ -52,13 +52,14 @@ void ShowList()
         {
             Console.WriteLine((i + 1) + ". " + toDoList[i]);
         }
+        ShowMenu();
     }
 }
 
 void AddToDO()
 {
     Console.WriteLine("\nEnter the TODO description:");
-    string userInput = Console.ReadLine().ToString();
+    string userInput = Console.ReadLine();
     if (userInput.Length > 0)
     {
         if (!toDoList.Contains(userInput))
