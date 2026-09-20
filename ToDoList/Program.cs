@@ -1,16 +1,16 @@
-﻿List <string> toDoList = new();
+﻿List<string> toDoList = new();
 bool exit = false;
 
 Console.WriteLine("Hello");
 
-while(!exit)
+while (!exit)
 {
     Console.WriteLine("\nWhat do you want to do?");
     Console.WriteLine("[S]ee all TODOs");
     Console.WriteLine("[A]dd a TODO");
     Console.WriteLine("[R]emove a TODO");
     Console.WriteLine("[E]xit");
-    Console.WriteLine();    
+    Console.WriteLine();
 
     string userInput = Console.ReadLine();
 
@@ -48,7 +48,8 @@ void ShowList()
 
     for (int i = 0; i < toDoList.Count; i++)
     {
-      Console.WriteLine((i + 1) + ". " + toDoList[i]);
+        Console.WriteLine("All TODOs");
+        Console.WriteLine((i + 1) + ". " + toDoList[i]);
     }
 }
 
@@ -84,9 +85,9 @@ void AddToDO()
 }
 
 void RemoveTodo()
-{    
-    if (toDoList.Count == 0) 
-    { 
+{
+    if (toDoList.Count == 0)
+    {
         NoToDoMessage();
         return;
     }
