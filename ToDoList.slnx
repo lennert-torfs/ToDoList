@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="SimpleCalculator/SimpleCalculator.csproj" Id="5a5847df-15b0-4688-84e0-98536cd47997" />
   <Project Path="ToDoList/ToDoList.csproj" />
 </Solution>
